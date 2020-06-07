@@ -31,8 +31,7 @@ console_error_panic_hook = { version = "0.1.6", optional = true }
 wee_alloc = { version = "0.4.2", optional = true }
 
 [dependencies.mogwai]
-git = "https://github.com/schell/mogwai.git"
-rev = "afe175fb3ef0d41ff5963dd28b81ef7e83b02232"
+version = "0.2.3"
 
 [dependencies.web-sys]
 version = "0.3"
