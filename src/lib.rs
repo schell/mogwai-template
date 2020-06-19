@@ -26,6 +26,5 @@ pub fn main() -> Result<(), JsValue> {
 
   h1()
     .text("Hello from mogwai")
-    .build()?
     .run()
 }
