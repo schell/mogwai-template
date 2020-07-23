@@ -44,4 +44,4 @@ jobs:
           ${{ runner.os }}-cargo-global-bin-refs/heads/master
           ${{ runner.os }}-cargo-global-bin-
     - name: test
-      run: ./scripts/test.sh || ls -lah scripts
+      run: ./scripts/test.sh
