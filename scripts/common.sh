@@ -14,4 +14,4 @@ else
 fi
 
 rustup update
-cargo install cargo-generate
+cargo install cargo-generate --features vendored-openssl
