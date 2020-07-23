@@ -9,6 +9,7 @@ set -eu
 ROOT="$(git rev-parse --show-toplevel)"
 source $ROOT/.ci/rust/common.sh
 
-cargo generate --git git@github.com:schell/mogwai-template.git --name gen-test
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+cargo generate --git git@github.com:schell/mogwai-template.git --name gen-test --branch $BRANCH
 cd gen-test
 cargo build

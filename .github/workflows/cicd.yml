@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v1
+
     # caching
     - name: Cache cargo registry
       uses: actions/cache@v1
@@ -41,5 +43,5 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-cargo-global-bin-refs/heads/master
           ${{ runner.os }}-cargo-global-bin-
-    - name: build
+    - name: test
       run: .ci/test.sh
