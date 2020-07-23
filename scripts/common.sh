@@ -14,4 +14,17 @@ else
 fi
 
 rustup update
-cargo install cargo-generate --features vendored-openssl
+
+if hash wasm-pack 2>/dev/null; then
+    echo "Have wasm-pack, skipping installation..."
+else
+    echo "Installing wasm-pack..."
+    curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+fi
+
+if hash cargo-generate 2>/dev/null; then
+    echo "Have cargo-generate, skipping installation..."
+else
+    echo "Installing cargo-generate..."
+    cargo install cargo-generate --features vendored-openssl
+fi
