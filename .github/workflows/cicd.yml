@@ -42,8 +42,4 @@ jobs:
           ${{ runner.os }}-cargo-global-bin-refs/heads/master
           ${{ runner.os }}-cargo-global-bin-
     - name: build
-      run: scripts/build.sh
-
-    - name: release
-      if: github.ref == 'refs/heads/release'
-      run: cd mogwai && cargo publish --token ${{ secrets.cargo_token }}
+      run: .ci/test.sh
