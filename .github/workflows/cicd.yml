@@ -1,0 +1,49 @@
+name: cicd
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # caching
+    - name: Cache cargo registry
+      uses: actions/cache@v1
+      with:
+        path: ~/.cargo/registry
+        key: ${{ runner.os }}-cargo-registry-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-registry-refs/heads/master
+          ${{ runner.os }}-cargo-registry-
+    - name: Cache cargo index
+      uses: actions/cache@v1
+      with:
+        path: ~/.cargo/git
+        key: ${{ runner.os }}-cargo-index-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-index-refs/heads/master
+          ${{ runner.os }}-cargo-index-
+    - name: Cache cargo build
+      uses: actions/cache@v1
+      with:
+        path: target
+        key: ${{ runner.os }}-cargo-build-target-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-build-target-refs/heads/master
+          ${{ runner.os }}-cargo-build-target-
+    - name: Cache global cargo bin
+      uses: actions/cache@v1
+      with:
+        path: /usr/share/rust/.cargo/bin
+        key: ${{ runner.os }}-cargo-global-bin-${{ github.ref }}
+        restore-keys: |
+          ${{ runner.os }}-cargo-global-bin-refs/heads/master
+          ${{ runner.os }}-cargo-global-bin-
+    - name: build
+      run: scripts/build.sh
+
+    - name: release
+      if: github.ref == 'refs/heads/release'
+      run: cd mogwai && cargo publish --token ${{ secrets.cargo_token }}
