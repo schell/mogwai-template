@@ -7,10 +7,9 @@
     </head>
     <body>
         <script type="module">
-         import init, { main } from './pkg/{{crate_name}}.js';
+         import init from './pkg/{{crate_name}}.js';
          window.addEventListener('load', async () => {
              await init();
-             await main();
          });
         </script>
     </body>
