@@ -1,1 +1,4 @@
 .github/workflows/cicd.yml
+*/.github/workflows/cicd.yml
+*/cicd.yml
+cicd.yml
