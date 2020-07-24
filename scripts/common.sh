@@ -1,6 +1,6 @@
 #!/bin/sh -eu
 
-export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$HOME/.cargo/bin:$PATH:
 
 section() {
     echo "--- $(TZ=UTC date +%Y%m%d-%H:%M:%S) - $1"
