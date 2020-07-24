@@ -10,6 +10,6 @@ fi
 BRANCH=$(basename $GITHUB_REF)
 
 echo "Testing project generation from the '$BRANCH' branch..."
-cargo generate --git git@github.com:schell/mogwai-template.git --name gen-test --branch $BRANCH
+cargo generate --git https://github.com/schell/mogwai-template.git --name gen-test --branch $BRANCH
 cd gen-test
 cargo build
