@@ -1,2 +1,3 @@
 .github/workflows/cicd.yml
 */cicd.yml
+testthing.yml
