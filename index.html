@@ -6,12 +6,11 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <script src="pkg/{{crate_name}}.js"></script>
-        <script type=module>
-         window
-             .wasm_bindgen('pkg/{{crate_name}}_bg.wasm')
-             .then( m => m.main() )
-             .catch(console.error);
+        <script type="module">
+         import init from './pkg/{{crate_name}}.js';
+         window.addEventListener('load', async () => {
+             await init();
+         });
         </script>
     </body>
 </html>
