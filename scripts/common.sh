@@ -1,5 +1,7 @@
 #!/bin/sh -eu
 
+export PATH=$PATH:$HOME/.cargo/bin
+
 section() {
     echo "--- $(TZ=UTC date +%Y%m%d-%H:%M:%S) - $1"
 }
@@ -27,4 +29,6 @@ fi
 #else
     echo "Installing cargo-generate..."
     cargo install cargo-generate --git https://github.com/schell/cargo-generate.git --rev eafafae56974752176b8f2030a78f800201b0f43
+
+    which cargo-generate
 #fi
