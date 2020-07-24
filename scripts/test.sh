@@ -11,6 +11,6 @@ BRANCH=$(basename $GITHUB_REF)
 
 echo "Testing project generation from the '$BRANCH' branch..."
 cd ..
-cargo generate --git ./mogwai-template --name gen-test --branch $BRANCH || ls -lah
+cargo generate --git ./mogwai-template --name gen-test
 cd gen-test
 wasm-pack build --target web
