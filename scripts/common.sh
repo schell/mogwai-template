@@ -2,11 +2,7 @@
 
 export PATH=$HOME/.cargo/bin:$PATH:
 
-section() {
-    echo "--- $(TZ=UTC date +%Y%m%d-%H:%M:%S) - $1"
-}
-
-section "Rust Setup"
+echo "Rust Setup"
 
 if hash rustup 2>/dev/null; then
     echo "Have rustup, skipping installation..."
@@ -28,6 +24,6 @@ if hash cargo-generate 2>/dev/null; then
     echo "Have cargo-generate, skipping installation..."
 else
     echo "Installing cargo-generate..."
-    cargo install cargo-generate --git https://github.com/schell/cargo-generate.git --rev eafafae56974752176b8f2030a78f800201b0f43
+    cargo install cargo-generate
     which cargo-generate
 fi
