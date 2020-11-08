@@ -1,10 +1,3 @@
-extern crate console_error_panic_hook;
-extern crate console_log;
-extern crate log;
-extern crate mogwai;
-extern crate serde;
-extern crate serde_json;
-
 use log::Level;
 use mogwai::prelude::*;
 use std::panic;
@@ -27,7 +20,7 @@ enum AppModel {
 
 #[derive(Clone)]
 enum AppView {
-    Cliked(u32),
+    Clicked(u32),
 }
 
 impl Component for App {
@@ -39,21 +32,31 @@ impl Component for App {
         match msg {
             AppModel::Click => {
                 self.clicks += 1;
-                tx.send(&Out::Clicked(self.clicks));
+                tx.send(&AppView::Clicked(self.clicks));
             }
         }
     }
 
     fn view(&self, tx: &Transmitter<AppModel>, rx: &Receiver<AppView>) -> ViewBuilder<HtmlElement> {
         builder! {
-            <div on:click=tx.contra_map(|_| In::Click)>
+            <div
+                style=
+                    vec![
+                        "float: left;",
+                        "padding: 1em;",
+                        "border-radius:0.5em;",
+                        "border: 1px solid #ddd;",
+                        "background: #f7f7f7;",
+                        "cursor: pointer;"
+                    ].concat()
+                on:click=tx.contra_map(|_| AppModel::Click)>
                 <p>
                     {(
                         "Hello from mogwai!",
                         rx.branch_map(|msg| {
                             match msg {
-                                Out::DrawClicks(1) => format!("Caught 1 click, click again 😀"),
-                                Out::DrawClicks(n) => format!("Caught {} clicks", n),
+                                AppView::Clicked(1) => format!("Caught 1 click, click again 😀"),
+                                AppView::Clicked(n) => format!("Caught {} clicks", n),
                             }
                         })
                     )}
