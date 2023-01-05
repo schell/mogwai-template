@@ -49,7 +49,7 @@ pub fn main() -> Result<(), JsValue> {
     panic::set_hook(Box::new(console_error_panic_hook::hook));
     console_log::init_with_level(Level::Trace).unwrap();
 
-    let view = JsDom::try_from(counter())
+    let _view = JsDom::try_from(counter())
         .unwrap()
         .run()
         .unwrap();
