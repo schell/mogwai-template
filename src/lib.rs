@@ -25,7 +25,7 @@ fn counter() -> ViewBuilder {
             p() {
                 {(
                     "Hello from mogwai!",
-                    input_msg.get_stream().unwrap(),
+                    input_msg.stream().unwrap(),
                 )}
             }
         }
