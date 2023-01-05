@@ -11,7 +11,7 @@ static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 fn counter() -> ViewBuilder {
     let output_clicked = Output::<()>::default();
-    let input_msg = Input::<String>::default();
+    let mut input_msg = Input::<String>::default();
     rsx! {
         div(
             style:float = "left",
