@@ -14,10 +14,10 @@ pub struct ButtonClick<V: View> {
 
 impl<V: View> Default for ButtonClick<V> {
     fn default() -> Self {
-        let mut proxy = Proxy::default();
+        let mut clicks = Proxy::default();
 
         rsx! {
-            let wrapper = div(
+            let wrapper = button(
                 style:float = "left",
                 style:padding = "1em",
                 style:border_radius = ".5em",
@@ -31,14 +31,14 @@ impl<V: View> Default for ButtonClick<V> {
                         0 => "Hello from mogwai!".to_string(),
                         1 => "Caught 1 click, click again 😀".to_string(),
                         n => format!("Caught {n} clicks"),
-                    )}
+                    })}
                 }
             }
         }
 
         Self {
             wrapper,
-            clicks: proxy,
+            clicks,
             on_click,
         }
     }
@@ -46,8 +46,8 @@ impl<V: View> Default for ButtonClick<V> {
 
 impl<V:View> ButtonClick<V> {
     pub async fn step(&mut self) {
-        let _ev = view.on_click.next().await;
-        view.clicks.modify(|n| *n += 1);
+        let _ev = self.on_click.next().await;
+        self.clicks.modify(|n| *n += 1);
     }
 }
 
