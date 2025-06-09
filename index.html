@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>{{project-name}}</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <script type="module">
-         import init from './pkg/{{crate_name}}.js';
-         window.addEventListener('load', async () => {
-             await init();
-         });
-        </script>
-    </body>
+<html>
+  <head>
+    <title>{{project-name}}</title>
+    <link href="style.css" rel="stylesheet" />
+    <link data-trunk rel="rust" data-wasm-opt=4 />
+  </head>
 </html>

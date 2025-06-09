@@ -14,4 +14,4 @@ cd ..
 ls -lah mogwai-template
 cargo generate --git ./mogwai-template --name gen-test
 cd gen-test
-wasm-pack build --target web
+trunk build --config Trunk.toml

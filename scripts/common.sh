@@ -13,11 +13,11 @@ fi
 
 rustup update
 
-if hash wasm-pack 2>/dev/null; then
-    echo "Have wasm-pack, skipping installation..."
+if hash trunk 2>/dev/null; then
+    echo "Have trunk, skipping installation..."
 else
-    echo "Installing wasm-pack..."
-    curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+    echo "Installing trunk..."
+    cargo install --locked trunk
 fi
 
 if hash cargo-generate 2>/dev/null; then
